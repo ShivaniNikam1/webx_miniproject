@@ -1,13 +1,13 @@
 <div *ngIf="showLoader" class="loaderRelay">
   <app-welcome-loader></app-welcome-loader>
 </div>
-<div [ngClass]="{'main-class' : isEdit}">
+<div [ngClass]="{ 'main-class': isEdit }">
   <mat-card class="example-card">
     <mat-card-header>
-      <mat-card-title *ngIf="!isEdit">Add New Expense</mat-card-title>
-      <mat-card-title *ngIf="isEdit">Edit Expense</mat-card-title>
+      <mat-card-title *ngIf="!isEdit">Add New Marks</mat-card-title>
+      <mat-card-title *ngIf="isEdit">Edit Marks</mat-card-title>
       <mat-card-subtitle
-        >Enter all the required fields to save expense</mat-card-subtitle
+        >Enter all the required fields to save Grade</mat-card-subtitle
       >
     </mat-card-header>
     <mat-card-content style="margin-top: 10px">
@@ -15,7 +15,7 @@
         <div class="row">
           <div class="col-sm-6">
             <mat-form-field appearance="outline" style="width: 100%">
-              <mat-label>Expense Name</mat-label>
+              <mat-label>Subject Name</mat-label>
               <input matInput placeholder="" formControlName="name" />
               <mat-hint
                 *ngIf="
@@ -51,7 +51,7 @@
           </div>
           <div class="col-sm-6">
             <mat-form-field appearance="outline" style="width: 100%">
-              <mat-label>Amount(In Rupees)</mat-label>
+              <mat-label>Marks</mat-label>
               <input
                 matInput
                 placeholder=""
@@ -74,8 +74,14 @@
         <div class="row">
           <div class="col-sm-6">
             <mat-form-field appearance="outline" style="width: 100%">
-              <mat-label>Choose a Expense date</mat-label>
-              <input matInput [max]="maxDate"  [matDatepicker]="picker" formControlName="expense_date" (dateChange)="addEvent($event)" />
+              <mat-label>Choose Exam date</mat-label>
+              <input
+                matInput
+                [max]="maxDate"
+                [matDatepicker]="picker"
+                formControlName="expense_date"
+                (dateChange)="addEvent($event)"
+              />
               <mat-hint
                 *ngIf="
                   expenseForm.get('expense_date')?.errors &&
@@ -94,8 +100,12 @@
             </mat-form-field>
           </div>
           <div class="col-sm-6">
-            <mat-form-field appearance="outline" style="width: 100%" *ngIf="!isEdit">
-              <mat-label>Expense Category</mat-label>
+            <mat-form-field
+              appearance="outline"
+              style="width: 100%"
+              *ngIf="!isEdit"
+            >
+              <mat-label>Subject Category</mat-label>
               <mat-select formControlName="expense_category" *ngIf="tags">
                 <mat-option *ngFor="let item of tags" [value]="item">{{
                   item
@@ -117,8 +127,12 @@
                 Expense Category is required
               </mat-hint>
             </mat-form-field>
-            <mat-form-field appearance="outline" style="width: 100%" *ngIf="isEdit">
-              <mat-label>Expense Category</mat-label>
+            <mat-form-field
+              appearance="outline"
+              style="width: 100%"
+              *ngIf="isEdit"
+            >
+              <mat-label>Subject Category</mat-label>
               <mat-select formControlName="expense_category">
                 <mat-option *ngFor="let item of keywords" [value]="item">{{
                   item
@@ -140,7 +154,7 @@
         <div class="row">
           <div class="col-sm-6">
             <mat-form-field appearance="outline" style="width: 100%">
-              <mat-label>Expense Payment Type</mat-label>
+              <mat-label>Fees Payment Type</mat-label>
               <mat-select formControlName="payment">
                 <mat-option *ngFor="let item of payments" [value]="item">{{
                   item
@@ -181,7 +195,11 @@
         <mat-icon>save</mat-icon> Save
       </button>
       <button *ngIf="isSaving" class="btn btn-success" type="button" disabled>
-        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+        <span
+          class="spinner-grow spinner-grow-sm"
+          role="status"
+          aria-hidden="true"
+        ></span>
         Saving...
       </button>
     </mat-card-actions>
@@ -190,13 +208,18 @@
       <button mat-raised-button (click)="onReset()">
         <mat-icon>autorenew</mat-icon>Reset
       </button>
-      <button mat-raised-button (click)="onCancel()" >
+      <button mat-raised-button (click)="onCancel()">
         <mat-icon>disabled_by_default</mat-icon> Cancel
       </button>
-      <button type="submit" mat-raised-button (click)="onEdit()" [disabled]="expenseForm.invalid && expenseForm.status==='INVALID'" color="primary">
+      <button
+        type="submit"
+        mat-raised-button
+        (click)="onEdit()"
+        [disabled]="expenseForm.invalid && expenseForm.status === 'INVALID'"
+        color="primary"
+      >
         <mat-icon>edit</mat-icon>Update
       </button>
-
     </mat-card-actions>
   </mat-card>
 </div>
