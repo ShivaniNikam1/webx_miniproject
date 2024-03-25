@@ -9,6 +9,8 @@ const expenseRoutes=require('./routes/expense');
 
 const mongoose = require("mongoose");
 mongoose.connect('mongodb+srv://root:'+process.env.MONGO_ATLAS_PW+'@cluster0.ywmh36y.mongodb.net/expenseTracker')
+// mongodb+srv://2021shivaninikam:aoLUvSUypvG69N6C@blogcluster.7ygi38f.mongodb.net/?retryWrites=true&w=majority&appName=blogCluster
+
 .then(()=>{
   console.log("Connected to database");
 })
